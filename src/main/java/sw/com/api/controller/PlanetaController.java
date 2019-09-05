@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,6 +45,12 @@ public class PlanetaController
 	public ResponseEntity<Planeta> listarPorId( @PathVariable BigInteger id )
 	{
 		return planetaService.listarPlanetaPorId( id );
+	}
+	
+	@GetMapping( "/nome" )
+	public ResponseEntity<List<Planeta>> listarPorNome( @RequestParam String nome )
+	{
+		return planetaService.listarPlanetaPorNome( nome );
 	}
 	
 	@DeleteMapping("/{id}")

@@ -15,6 +15,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.util.StringUtils;
+
 
 import sw.com.api.model.PlanetAPI;
 import sw.com.api.model.Planeta;
@@ -63,6 +65,16 @@ public class PlanetaService
 		planeta.setQtdAparicoesFilmes( getPlanetAPIFilms( planeta.getId( ) ) );
 		
 		return ResponseEntity.ok( ).body( planeta );
+	}
+	
+	public ResponseEntity<List<Planeta>> listarPlanetaPorNome( String nome )
+	{
+		List<Planeta> planetaOptional = planetaRepository.findPlanetaByNomeLike( nome );
+		
+		if( StringUtils.isEmpty( planetaOptional ) )
+			return ResponseEntity.noContent( ).build( );
+		
+		return ResponseEntity.ok( ).body( planetaOptional );
 	}
 	
 	public ResponseEntity<Object> removerPlaneta( BigInteger id )
