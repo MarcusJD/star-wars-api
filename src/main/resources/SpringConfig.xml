@@ -1,0 +1,7 @@
+
+<mongo:mongo host="127.0.0.1" port="32769" />
+<mongo:db-factory dbname="starwars" />
+
+<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+    <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+</bean>
